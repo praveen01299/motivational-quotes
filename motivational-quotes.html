@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Just For You</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fffbe6;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .quote {
+      font-size: 1.5em;
+      max-width: 600px;
+    }
+    .author {
+      margin-top: 1em;
+      font-size: 1em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="quote" id="quote"></div>
+    <div class="author" id="author"></div>
+  </div>
+
+  <script>
+    const quotes = [
+      { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+      { text: "You are braver than you believe, stronger than you seem, and smarter than you think.", author: "A.A. Milne" },
+      { text: "Don’t watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+      { text: "Every day is a fresh start.", author: "Unknown" },
+      { text: "The best view comes after the hardest climb.", author: "Unknown" }
+    ];
+
+    const random = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("quote").textContent = random.text;
+    document.getElementById("author").textContent = `– ${random.author}`;
+  </script>
+</body>
+</html>
