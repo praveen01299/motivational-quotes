@@ -10,12 +10,22 @@
       background-color: #fffbe6;
       color: #333;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       height: 100vh;
       margin: 0;
       padding: 20px;
+    }
+    .greeting {
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    }
+    .message {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+      color: #555;
     }
     .quote {
       font-size: 1.5em;
@@ -29,26 +39,28 @@
   </style>
 </head>
 <body>
+  <div class="greeting">Hi Shivvy!!!</div>
+  <div class="message">If you're having a bad day, here's something to lift you up ❤️❤️❤️</div>
   <div>
     <div class="quote" id="quote"></div>
     <div class="author" id="author"></div>
   </div>
-  
+
   <script>
-  async function fetchQuote() {
-    try {
-      const response = await fetch("quotes.json");
-      const quotes = await response.json();
-      const random = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById("quote").textContent = `"${random.text}"`;
-      document.getElementById("author").textContent = `– ${random.author}`;
-    } catch (error) {
-      console.error(error);
-      document.getElementById("quote").textContent = "Something went wrong. Try again later.";
-      document.getElementById("author").textContent = "";
+    async function fetchQuote() {
+      try {
+        const response = await fetch("quotes.json");
+        const quotes = await response.json();
+        const random = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("quote").textContent = `"${random.text}"`;
+        document.getElementById("author").textContent = `– ${random.author}`;
+      } catch (error) {
+        console.error(error);
+        document.getElementById("quote").textContent = "Something went wrong. Try again later.";
+        document.getElementById("author").textContent = "";
+      }
     }
-  }
-  fetchQuote();
+    fetchQuote();
   </script>
 
 </body>
