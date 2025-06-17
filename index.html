@@ -40,7 +40,7 @@
 </head>
 <body>
   <div class="greeting">Hi Shivvy!!!</div>
-  <div class="message">If you're having a bad day, here's something to lift you up ❤️❤️❤️</div>
+  <div class="message">❤️❤️❤️ If you're having a bad day, here's something to lift you up ❤️❤️❤️</div>
   <div>
     <div class="quote" id="quote"></div>
     <div class="author" id="author"></div>
@@ -65,3 +65,105 @@
 
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Just For You</title>
+  <style>
+    :root {
+      --pastel1: #fffbe6;
+      --pastel2: #fcefe3;
+      --pastel3: #eafaf1;
+      --pastel4: #f3f0ff;
+      --pastel5: #fff0f5;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      transition: background-color 0.5s ease;
+    }
+
+    .greeting {
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    }
+
+    .message {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+      color: #555;
+    }
+
+    .quote {
+      font-size: 1.5em;
+      max-width: 600px;
+      padding: 0 10px;
+    }
+
+    .author {
+      margin-top: 1em;
+      font-size: 1em;
+      color: #666;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="greeting">Hi Shivvy!!!</div>
+  <div class="message">❤️❤️❤️ If you're having a bad day, here's something to lift you up ❤️❤️❤️</div>
+  <div>
+    <div class="quote" id="quote"></div>
+    <div class="author" id="author"></div>
+  </div>
+  <div class="footer">Always rooting for you – Praveen ❤️</div>
+
+  <script>
+    // Set random pastel background
+    const pastelColors = [
+      getComputedStyle(document.documentElement).getPropertyValue('--pastel1').trim(),
+      getComputedStyle(document.documentElement).getPropertyValue('--pastel2').trim(),
+      getComputedStyle(document.documentElement).getPropertyValue('--pastel3').trim(),
+      getComputedStyle(document.documentElement).getPropertyValue('--pastel4').trim(),
+      getComputedStyle(document.documentElement).getPropertyValue('--pastel5').trim()
+    ];
+    document.body.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+
+    // Load quote from local JSON
+    async function fetchQuote() {
+      try {
+        const response = await fetch("quotes.json");
+        const quotes = await response.json();
+        const random = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("quote").textContent = `"${random.text}"`;
+        document.getElementById("author").textContent = `– ${random.author}`;
+      } catch (error) {
+        console.error(error);
+        document.getElementById("quote").textContent = "Something went wrong. Try again later.";
+        document.getElementById("author").textContent = "";
+      }
+    }
+
+    fetchQuote();
+  </script>
+</body>
+</html>
+
